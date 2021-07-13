@@ -29,4 +29,14 @@ RSpec.describe do
     expect(cell.ship).to be_a(Ship)
     expect(cell.empty?).to eq(false)
   end
+
+  xit 'is fired upon empty cell' do
+    cell = Cell.new("B4")
+    cruiser = Ship.new("Cruiser", 3)
+    cell.place_ship(cruiser)
+
+    expect(cell.fired_upon?).to eq(false)
+  end
+
+
 end
