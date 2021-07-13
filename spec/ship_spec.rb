@@ -38,7 +38,7 @@ RSpec.describe do
   end
 
 
-  it 'sinks at 0 health' do
+  xit 'sinks at 0 health' do
     cruiser = Ship.new("Cruiser", 3)
     cruiser.hit
     expect(cruiser.sunk?).to eq(false)
