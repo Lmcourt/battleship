@@ -18,18 +18,12 @@ attr_reader :coordinate, :ship, :render
   end
 
   def fired_upon?
-    @fire_upon
+    @fired_upon
   end
 
   def fire_upon
-    @ship.hit
-    @fire_upon = true
-  end
-
-  def render
-    require "pry"; binding.pry
-    @fire_upon = true
-    @render = "M"
+    @ship.hit if @is_empty == false
+    @fired_upon = true
   end
 
 end
