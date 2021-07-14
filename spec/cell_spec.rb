@@ -1,5 +1,6 @@
 require './lib/ship'
 require './lib/cell'
+require './lib/cell_drive'
 
 RSpec.describe do
   it 'exists' do
