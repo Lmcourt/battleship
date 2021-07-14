@@ -1,6 +1,5 @@
 require './lib/ship'
 require './lib/cell'
-require './lib/cell_drive'
 
 RSpec.describe do
   it 'exists' do
@@ -68,7 +67,6 @@ RSpec.describe do
   end
 
   xit 'is hit' do
-
     cell_2 = Cell.new("C3")
     cruiser = Ship.new("Cruiser", 3)
     cell_2.place_ship(cruiser)
@@ -78,13 +76,14 @@ RSpec.describe do
     expect(cruiser.sunk?).to eq(false)
   end
 
-  xit "has sunk" do
+  it "has sunk" do
     cell_2 = Cell.new("C3")
     cruiser = Ship.new("Cruiser", 3)
     cell_2.place_ship(cruiser)
 
     cruiser.hit
     cruiser.hit
+    cell_2.fire_upon
     expect(cruiser.sunk?).to eq(true)
     expect(cell_2.render).to eq("X")
   end

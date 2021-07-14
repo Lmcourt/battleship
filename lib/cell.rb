@@ -18,12 +18,24 @@ attr_reader :coordinate, :ship, :render
   end
 
   def fired_upon?
-    @fired_upon
+    @is_fired_upon
   end
 
   def fire_upon
     @ship.hit if @is_empty == false
-    @fired_upon = true
+    @is_fired_upon = true
   end
 
+<<<<<<< HEAD
+=======
+  def render(show_ship = false)
+    if show_ship == false && @is_fired_upon == true && @is_empty == false && ship.sunk? == true
+      "X"
+    elsif show_ship == false && @is_fired_upon == true && @is_empty == true
+      "M"
+    else
+      "."
+    end
+  end
+>>>>>>> 19a57631c9b1f28f9a024256e6302b307a2d2766
 end
