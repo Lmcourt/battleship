@@ -26,8 +26,6 @@ attr_reader :coordinate, :ship, :render
     @is_fired_upon = true
   end
 
-<<<<<<< HEAD
-=======
   def render(show_ship = false)
     if show_ship == false && @is_fired_upon == true && @is_empty == false && ship.sunk? == true
       "X"
@@ -37,5 +35,4 @@ attr_reader :coordinate, :ship, :render
       "."
     end
   end
->>>>>>> 19a57631c9b1f28f9a024256e6302b307a2d2766
 end
