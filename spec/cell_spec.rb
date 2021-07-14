@@ -31,7 +31,7 @@ RSpec.describe do
     expect(cell.empty?).to eq(false)
   end
 
-  xit 'is fired upon empty cell' do
+  it 'is fired upon empty cell' do
     cell = Cell.new("B4")
     cruiser = Ship.new("Cruiser", 3)
     cell.place_ship(cruiser)
@@ -39,7 +39,7 @@ RSpec.describe do
     expect(cell.fired_upon?).to eq(false)
   end
 
-  xit 'is reducing ships health by one' do
+  it 'is reducing ships health by one' do
     cell = Cell.new("B4")
     cruiser = Ship.new("Cruiser", 3)
     cell.place_ship(cruiser)
@@ -49,7 +49,7 @@ RSpec.describe do
     expect(cell.fired_upon?).to eq(true)
   end
 
-  xit 'is a miss' do
+  it 'is a miss' do
     cell_1 = Cell.new("B4")
 
     expect(cell_1.render).to eq(".")
