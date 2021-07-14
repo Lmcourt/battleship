@@ -4,7 +4,7 @@ attr_reader :coordinate, :ship
     @coordinate = coordinate
     @ship = nil #nil by default
     @is_empty = true #empty by default
-    @fired_upon = false
+    @is_fired_upon = false
   end
 
   def empty?
@@ -17,19 +17,21 @@ attr_reader :coordinate, :ship
   end
 
   def fired_upon?
-    @fired_upon
+    @is_fired_upon
   end
 
   def fire_upon
     @ship.hit if @is_empty == false
-    @fired_upon = true
+    @is_fired_upon = true
   end
 
-  def render(x = false)
-    if @fired_upon == false && @ship == false
+  def render(show_ship = false)
+    if show_ship == false && @is_fired_upon == true && @is_empty == false && ship.sunk? == true
+      "X"
+    elsif show_ship == false && @is_fired_upon == true && @is_empty == true
+      "M"
+    else
       "."
-    elsif @fired_upon == true && @is_empty == true
-       "M"
     end
   end
 end
