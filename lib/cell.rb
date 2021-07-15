@@ -29,8 +29,12 @@ attr_reader :coordinate, :ship, :render
   def render(show_ship = false)
     if show_ship == false && @is_fired_upon == true && @is_empty == false && ship.sunk? == true
       "X"
+    elsif show_ship == false && @is_fired_upon == true && @is_empty == false
+      "H"
     elsif show_ship == false && @is_fired_upon == true && @is_empty == true
       "M"
+    elsif show_ship == true
+      "S"
     else
       "."
     end

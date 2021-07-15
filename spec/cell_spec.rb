@@ -57,7 +57,7 @@ RSpec.describe do
     expect(cell_1.render).to eq("M")
   end
 
-  xit 'the ship is revealed' do
+  it 'the ship is revealed' do
     cell_2 = Cell.new("C3")
     cruiser = Ship.new("Cruiser", 3)
     cell_2.place_ship(cruiser)
@@ -66,7 +66,7 @@ RSpec.describe do
     expect(cell_2.render(true)).to eq("S")
   end
 
-  xit 'is hit' do
+  it 'is hit' do
     cell_2 = Cell.new("C3")
     cruiser = Ship.new("Cruiser", 3)
     cell_2.place_ship(cruiser)
