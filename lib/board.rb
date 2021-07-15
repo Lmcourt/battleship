@@ -25,4 +25,8 @@ class Board
       "D4" => Cell.new("D4 value")
     }
   end
+
+  def valid_coordinate?
+
+  end 
 end
