@@ -1,11 +1,10 @@
 class Cell
-attr_reader :coordinate, :ship, :render
+attr_reader :coordinate, :ship
   def initialize(coordinate)
     @coordinate = coordinate
     @ship = nil #nil by default
     @is_empty = true #empty by default
     @fire_upon = false
-    @render = "."
   end
 
   def empty?
