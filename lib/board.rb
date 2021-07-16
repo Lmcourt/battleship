@@ -1,3 +1,4 @@
+require 'pry'
 class Board
 
   attr_reader :the_board
@@ -24,5 +25,18 @@ class Board
       "D3" => Cell.new("D3 value"),
       "D4" => Cell.new("D4 value")
     }
+  end
+
+  def valid_coordinate?(key)
+    cells.has_key?(key)
+  end
+
+  def valid_placement?(ship, coordinates)
+    binding.pry
+    ship.length == coordinates.length
+    range = coordinates
+    range.to_a.each_cons(coordinates.length).to_a
+    #do with numbers
+    #compare with coordinates to see if consecutive
   end
 end
