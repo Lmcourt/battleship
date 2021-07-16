@@ -26,9 +26,7 @@ RSpec.describe Board do
     expect(board.valid_coordinate?("A22")).to eq(false)
   end
 
-
   xit "validates placements" do
-
 
     board = Board.new
     cruiser = Ship.new("Cruiser", 3)
@@ -38,9 +36,6 @@ RSpec.describe Board do
     expect(board.valid_placement?(submarine, ["A2", "A3", "A4"])).to eq(false)
   end
 
-
-  it 'is consecutive' do
-    
 
   it "validates consecutive coordinates" do
 
@@ -56,9 +51,7 @@ RSpec.describe Board do
     # extra test to see if a true statement returns true
     expect(board.valid_placement?(submarine, ["A2", "A3"])).to eq(true)
 
-
     expect(board.valid_placement?(submarine, ["C1", "B1"])).to eq(false)
-
   end
 
   it "cannot be diagonal" do
@@ -71,6 +64,5 @@ RSpec.describe Board do
 
     #https://www.geeksforgeeks.org/ruby-matrix-diagonal-function-2/
   end
-end
 end
 # diagonal either all the same number or all the same letter
