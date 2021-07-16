@@ -25,7 +25,7 @@ attr_reader :coordinate, :ship
     @is_fired_upon = true
   end
 
-  def render(show_ship = false)
+  def render(show_ship = false) #maybe instance variable? can't check if its true or false if I havent assigned it
     if show_ship == false && @is_fired_upon == true && @is_empty == false && ship.sunk? == true
       "X"
     elsif show_ship == false && @is_fired_upon == true && @is_empty == false
