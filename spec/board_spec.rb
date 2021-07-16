@@ -25,10 +25,7 @@ RSpec.describe Board do
     expect(board.valid_coordinate?("A22")).to eq(false)
   end
 
-
-  it 'validates placement' do
-
-  xit "validates placements" do
+  it "validates placements" do
 
     board = Board.new
     cruiser = Ship.new("Cruiser", 3)
@@ -39,7 +36,7 @@ RSpec.describe Board do
   end
 
 
-  it "validates consecutive coordinates" do
+  xit "validates consecutive coordinates" do
 
     board = Board.new
     cruiser = Ship.new("Cruiser", 3)
@@ -53,7 +50,7 @@ RSpec.describe Board do
     # extra test to see if a true statement returns true
     expect(board.valid_placement?(submarine, ["A2", "A3"])).to eq(true)
 
-    expect(board.valid_placement?(submarine, ["C1", "B1"])).to eq(false)
+    expect(board.valid_placement?(submarine, ["B1", "C1"])).to eq(true)
   end
 end
 
