@@ -8,35 +8,50 @@ class Board
 
   def cells
     @the_board = {
-      "A1" => Cell.new("A1 value"),
-      "A2" => Cell.new("A2 value"),
-      "A3" => Cell.new("A3 value"),
-      "A4" => Cell.new("A4 value"),
-      "B1" => Cell.new("B1 value"),
-      "B2" => Cell.new("B2 value"),
-      "B3" => Cell.new("B3 value"),
-      "B4" => Cell.new("B4 value"),
-      "C1" => Cell.new("C1 value"),
-      "C2" => Cell.new("C2 value"),
-      "C3" => Cell.new("C3 value"),
-      "C4" => Cell.new("C4 value"),
-      "D1" => Cell.new("D1 value"),
-      "D2" => Cell.new("D2 value"),
-      "D3" => Cell.new("D3 value"),
-      "D4" => Cell.new("D4 value")
+      "A1" => Cell.new("A1"),
+      "A2" => Cell.new("A2"),
+      "A3" => Cell.new("A3"),
+      "A4" => Cell.new("A4"),
+      "B1" => Cell.new("B1"),
+      "B2" => Cell.new("B2"),
+      "B3" => Cell.new("B3"),
+      "B4" => Cell.new("B4"),
+      "C1" => Cell.new("C1"),
+      "C2" => Cell.new("C2"),
+      "C3" => Cell.new("C3"),
+      "C4" => Cell.new("C4"),
+      "D1" => Cell.new("D1"),
+      "D2" => Cell.new("D2"),
+      "D3" => Cell.new("D3"),
+      "D4" => Cell.new("D4")
     }
   end
-
+#send a coordinate 1 by by in the method
+#takes an array, is this one a valid coordinate, use all? (ennumerabler) do all of you make this block true?
   def valid_coordinate?(key)
     cells.has_key?(key)
   end
+#you can place a ship backwards
+#ship laced on a1 a2 a3 is valid, backwards is not valid
+#no diagonal, no empty space, three length on two, place off the board
 
   def valid_placement?(ship, coordinates)
-    binding.pry
     ship.length == coordinates.length
-    range = coordinates
-    range.to_a.each_cons(coordinates.length).to_a
+    array = []
+    cells.keys.each_cons(ship.length) do |cell|
+      array << cell
+    end
+    array.any? do |a|
+      
+    end
+      ##truthy values
+
     #do with numbers
     #compare with coordinates to see if consecutive
   end
 end
+
+###if diagonal or not -
+#cells being stored in a hash, dont worry about 4x4 grid
+#you will work with nested collection rather than single hash
+#all the same letter or all the same number will be shared
