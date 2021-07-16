@@ -31,27 +31,24 @@ class Board
   def valid_coordinate?(key)
     cells.has_key?(key)
   end
-#you can place a ship backwards
-#ship laced on a1 a2 a3 is valid, backwards is not valid
-#no diagonal, no empty space, three length on two, place off the board
 
   def valid_placement?(ship, coordinates)
     ship.length == coordinates.length
     array = []
     cells.keys.each_cons(ship.length) do |cell|
-      array << cell
+    array << cell
     end
     array.any? do |a|
-      
     end
-      ##truthy values
-
-    #do with numbers
-    #compare with coordinates to see if consecutive
+    cells.keys.diagonal("A1","B2","C3") == false
   end
 end
-
+#do with numbers
+#compare with coordinates to see if consecutive
 ###if diagonal or not -
 #cells being stored in a hash, dont worry about 4x4 grid
 #you will work with nested collection rather than single hash
 #all the same letter or all the same number will be shared
+#you can place a ship backwards
+#ship laced on a1 a2 a3 is valid, backwards is not valid
+#no diagonal, no empty space, three length on two, place off the board

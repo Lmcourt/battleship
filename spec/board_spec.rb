@@ -1,6 +1,7 @@
 require './lib/board'
 require './lib/ship'
 require './lib/cell'
+require 'pry'
 
 RSpec.describe Board do
   it 'exists' do
@@ -25,7 +26,7 @@ RSpec.describe Board do
     expect(board.valid_coordinate?("A22")).to eq(false)
   end
 
-  xit "validates placements" do
+  it "validates placements" do
     board = Board.new
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2)
@@ -43,5 +44,16 @@ RSpec.describe Board do
     expect(board.valid_placement?(submarine, ["A1", "C1"])).to eq(false)
     expect(board.valid_placement?(cruiser, ["A3", "A2", "A1"])).to eq(false)
     expect(board.valid_placement?(submarine, ["C1", "B1"])).to eq(false)
+  end
+
+  it "cannot be diagonal" do
+    board = Board.new
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
+
+    expect(board.valid_placement?(cruiser, ["A1", "B2", "C3"])).to eq(false)
+    expect(board.valid_placement?(submarine, ["C2", "D3"])).to eq (false)
+
+    #https://www.geeksforgeeks.org/ruby-matrix-diagonal-function-2/
   end
 end
