@@ -40,9 +40,10 @@ class Board
     end
     array.any? do |a|
     end
-    cells.keys.diagonal("A1","B2","C3") == false
 
+    def check_row
       horizontal_array = []
+
       cells.keys.each_cons(ship.length) do |key|
         horizontal_array << key
       end
@@ -52,14 +53,22 @@ class Board
 
       # not really sure, but probably going to need to do something similar.
       # this is just an 'outline'
+def check_columns
       vertical_array = []
+
       cells.keys.each_cons(ship.length) do |key|
         vertical_array << key
-      end
-      vertical_array.any? do |vertical|
-        vertical == coordinates
-      end
+      # end
+      # vertical_array.any? do |vertical|
+      #   vertical == coordinates
+
+      vertical_array.transpose
+
   end
+  vertical_array
+end 
+end
+end
 end
 #do with numbers
 #compare with coordinates to see if consecutive
