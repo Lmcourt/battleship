@@ -34,7 +34,6 @@ class Board
 
   def valid_placement?(ship, coordinates)
     ship.length == coordinates.length
-<<<<<<< HEAD
     array = []
     cells.keys.each_cons(ship.length) do |cell|
     array << cell
@@ -42,7 +41,6 @@ class Board
     array.any? do |a|
     end
     cells.keys.diagonal("A1","B2","C3") == false
-=======
 
       horizontal_array = []
       cells.keys.each_cons(ship.length) do |key|
@@ -61,7 +59,6 @@ class Board
       vertical_array.any? do |vertical|
         vertical == coordinates
       end
->>>>>>> baf8d8458c221c2732503fe4469f7df55d0ed31c
   end
 end
 #do with numbers
