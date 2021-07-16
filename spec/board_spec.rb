@@ -51,7 +51,7 @@ RSpec.describe Board do
     # extra test to see if a true statement returns true
     expect(board.valid_placement?(submarine, ["A2", "A3"])).to eq(true)
 
-    expect(board.valid_placement?(submarine, ["C1", "B1"])).to eq(false)
+    expect(board.valid_placement?(submarine, ["B1", "C1"])).to eq(true)
   end
 
   xit "cannot be diagonal" do

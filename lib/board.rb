@@ -66,7 +66,7 @@ def check_columns
 
   end
   vertical_array
-end 
+end
 end
 end
 end
