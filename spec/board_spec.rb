@@ -51,8 +51,8 @@ RSpec.describe Board do
     # extra test to see if a true statement returns true
     # why are they coming back nil when all conditions pass in pry?
 
-    # expect(board.valid_placement?(submarine, ["A2", "A3"])).to eq(true)
-    # expect(board.valid_placement?(submarine, ["B1", "C1"])).to eq(true)
+    expect(board.valid_placement?(submarine, ["A2", "A3"])).to eq(true)
+    expect(board.valid_placement?(submarine, ["B1", "C1"])).to eq(true)
   end
 
   it 'cant be diagon ally' do
@@ -64,7 +64,7 @@ RSpec.describe Board do
     expect(board.valid_placement?(submarine, ["C2", "D3"])).to eq(false)
   end
 
-  xit 'checks out' do
+  it 'checks out' do
     board = Board.new
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2)
