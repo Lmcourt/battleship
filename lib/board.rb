@@ -46,12 +46,14 @@ class Board
 
     # if all letters are the same and the ship length == coordinate length and the second number is 1 more than the first(consecutive)
     if letters.uniq.count == 1 && ship.length == coordinates.length && numbers.each_cons(2).all? { |first, second| second == first + 1 }
+      true
     elsif
       #same but reverse letters and numbers
       numbers.uniq.count == 1 && ship.length == coordinates.length && letters.each_cons(2).all? { |first, second| second == first + 1 }
+      true
     else
       #or it's not valid
-     false
+      false
     end
   end
 end
