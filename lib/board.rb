@@ -32,21 +32,23 @@ class Board
 
 
   def valid_placement?(ship, coordinates)
-    ship.length == coordinates.length
-
     letters = []
     coordinates.each do |coordinate|
       letters << coordinate[0]
     end
-
-    letters.uniq.count <= 1
 
     numbers = []
     coordinates.each do |coordinate|
       numbers << coordinate[1]
     end
 
-    numbers.uniq.count <= 1
+    numbers.each_cons
+
+    if letters.uniq.count <= 1 && ship.length == coordinates.length
+    elsif numbers.uniq.count <= 1 && ship.length == coordinates.length
+    else
+      false
+    end
   end
 
     # value_arrays = []
