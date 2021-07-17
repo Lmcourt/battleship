@@ -32,6 +32,7 @@ class Board
   end
 
   def valid_placement?(ship, coordinates)
+<<<<<<< HEAD
     ship.length == coordinates.length
     array = []
     cells.keys.each_cons(ship.length) do |cell|
@@ -53,6 +54,64 @@ class Board
       # not really sure, but probably going to need to do something similar.
       # this is just an 'outline'
   #   def check_columns
+=======
+    letters = []
+    coordinates.each do |coordinate|
+      letters << coordinate[0]
+    end
+
+    numbers = []
+    coordinates.each do |coordinate|
+      numbers << coordinate[1]
+    end
+
+    numbers.each_cons
+
+    if letters.uniq.count <= 1 && ship.length == coordinates.length
+    elsif numbers.uniq.count <= 1 && ship.length == coordinates.length
+    else
+      false
+    end
+  end
+
+    # value_arrays = []
+    # cells.values.each do |value|
+    #   value_arrays <<  value.split(/\W+/)
+    # end
+
+# make a game class
+
+# make a seperate player and computer class
+
+
+    # letters = []
+    # letters << cells.values.split(0)
+    # numbers = []
+
+    # cells.keys.each_cons.each(ship.length) do |key|
+    #   horizontal_array << key
+    # end
+    # horizontal_array.map do |array|
+    #   # delete-if or reject!
+    # end
+    # horizontal_array.any? do |horizontal|
+    #   horizontal == coordinates
+    # end
+
+
+#check if num lets are the same and consecutive
+  # def check_columns
+  #   require "pry"; binding.pry
+  #   vertical_array = []
+  #   horizontal_array.each_cons(4) do |array|
+  #     vertical_array << array
+  #   end
+  # end
+
+  # def valid_placement?(ship, coordinates)
+  #     # not really sure, but probably going to need to do something similar.
+  #     # this is just an 'outline'
+>>>>>>> 1b78f0055f21f02a3c2dffb66815bda4cb3a1b3f
   #     vertical_array = []
   #
   #     cells.keys.each_cons(ship.length) do |key|
