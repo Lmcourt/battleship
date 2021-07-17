@@ -1,6 +1,6 @@
 class Board
 
-  attr_reader :the_board
+  attr_reader :the_board, :numbers, :letters
   def initialize
     @the_board = {}
   end
@@ -54,22 +54,28 @@ class Board
       # not really sure, but probably going to need to do something similar.
       # this is just an 'outline'
   #   def check_columns
-=======
-    letters = []
-    coordinates.each do |coordinate|
-      letters << coordinate[0]
-    end
 
+  def valid_placement?(ship, coordinates)
+# require "pry"; binding.pry
+    #sets up the array for numbers
     numbers = []
-    coordinates.each do |coordinate|
-      numbers << coordinate[1]
-    end
+    #iterates over the coordinates and puts the number string into array as integer
+    coordinates.each { |coordinate| numbers << coordinate[1].to_i }
 
-    numbers.each_cons
+    #sets up the array for letters
+    letters = []
+    #iterates over the coordiantes and puts the letters into an array as numbers
+    coordinates.each { |coordinate| letters << coordinate[0].ord }
 
-    if letters.uniq.count <= 1 && ship.length == coordinates.length
-    elsif numbers.uniq.count <= 1 && ship.length == coordinates.length
+    # if all letters are the same and the ship length == coordinate length and the second number is 1 more than the first(consecutive)
+    if letters.uniq.count == 1 && ship.length == coordinates.length && numbers.each_cons(2).all? { |first, second| second == first + 1 }
+      true
+    elsif
+      #same but reverse letters and numbers
+      numbers.uniq.count == 1 && ship.length == coordinates.length && letters.each_cons(2).all? { |first, second| second == first + 1 }
+      true
     else
+      #or it's not valid
       false
     end
   end
