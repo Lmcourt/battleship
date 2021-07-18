@@ -59,8 +59,8 @@ class Board
     output = "  1 2 3 4 \n"
     letters =  ["A", "B", "C", "D"]
     letters.each do |letter|
+      output << letter
         @cells.values.each_slice(4) do |cell_group|
-          output << letter
           cell_group.each do |cell|
             output << " " + cell.render
           end
