@@ -2,10 +2,10 @@ class Board
 
   attr_reader :the_board
   def initialize
-    @cells = generate_cells
+    @cells = cells
   end
 
-  def generate_cells
+  def cells
      {
       "A1" => Cell.new("A1"),
       "A2" => Cell.new("A2"),
