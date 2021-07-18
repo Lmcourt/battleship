@@ -69,12 +69,29 @@ class Board
       "C #{@cells["C1"].render(true)} #{@cells["C2"].render(true)} #{@cells["C3"].render(true)} #{@cells["C4"].render(true)} \n" +
       "D #{@cells["D1"].render(true)} #{@cells["D2"].render(true)} #{@cells["D3"].render(true)} #{@cells["D4"].render(true)} \n"
 
-      if show_ship == true
-        player_board
-      else
-        computer_board
-      end
+    if show_ship == true
+      player_board
+    else
+      computer_board
+    end
+
   end
+  # def render(show_ship = true)
+  #   output = "  1 2 3 4 \n"
+  #   letters =  ["A", "B", "C", "D"]
+  #   letters.each do |letter|
+  #     output << letter
+  #       @cells.values.each_slice(4) do |cell_group|
+  #         cell_group.each do |cell|
+  #           output << " " + cell.render
+  #         end
+  #       end
+  #       #tried putting between 74 and 75*
+  #     output <<  " \n"
+  #   end
+  #
+  #   output
+  # end
 end
 
   #   output = "  1 2 3 4 \n"

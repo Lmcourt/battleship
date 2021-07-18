@@ -11,14 +11,13 @@ class Game
     user_input = gets.chomp.downcase
   end
 
-  game_play if user_input = "p"
-  puts "Goodbye!" if user_input = "q"
-
   def game_play
     while @end_message != "You won!" || "I won!" do
 
     end
 
+    game_play if user_input = "p"
+    puts "Goodbye!" if user_input = "q"
   end
 
   def setup
