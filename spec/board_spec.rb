@@ -1,6 +1,7 @@
 require './lib/board'
 require './lib/ship'
 require './lib/cell'
+require 'pry'
 
 RSpec.describe Board do
   it 'exists' do
@@ -15,7 +16,7 @@ RSpec.describe Board do
     expect(board.cells).to be_a(Hash)
   end
 
-  it 'is valid' do
+  it 'has valid coordinates' do
     board = Board.new
 
     expect(board.valid_coordinate?("A1")).to eq(true)
@@ -55,7 +56,7 @@ RSpec.describe Board do
     expect(board.valid_placement?(submarine, ["B1", "C1"])).to eq(true)
   end
 
-  it 'cant be diagon ally' do
+  it "cannot be diagonal" do
     board = Board.new
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2)
@@ -71,5 +72,41 @@ RSpec.describe Board do
 
     expect(board.valid_placement?(submarine, ["A1", "A2"])).to eq(true)
     expect(board.valid_placement?(cruiser, ["B1", "C1", "D1"])).to eq(true)
+  end
+
+  it 'places ships' do
+    board = Board.new
+    cruiser = Ship.new("Cruiser", 3)
+
+    board.place(cruiser, ["A1", "A2", "A3"])
+
+    cell_1 = board.cells["A1"]
+    cell_2 = board.cells["A2"]
+    cell_3 = board.cells["A3"]
+    expect(cell_3.ship == cell_2.ship).to eq(true)
+    expect(board.cells["A1"]).to eq(cell_1)
+    expect(board.cells["A2"]).to eq(cell_2)
+    expect(board.cells["A3"]).to eq(cell_3)
+
+  end
+
+  it 'make sure ships do not overlap' do
+    board = Board.new
+    cruiser = Ship.new("Cruiser", 3)
+
+    board.place(cruiser, ["A1", "A2", "A3"])
+
+    submarine = Ship.new("Submarine", 2)
+    expect( board.valid_placement?(submarine, ["A1", "B1"])).to eq(false)
+  end
+
+  it "renders the board" do
+    board = Board.new
+    cruiser = Ship.new("Cruiser", 3)
+
+    board.place(cruiser, ["A1", "A2", "A3"])
+
+    expect(board.render).to eq("  1 2 3 4 \nA . . . . \nB . . . . \nC . . . . \nD . . . . \n")
+    expect(board.render(true)).to eq("  1 2 3 4 \nA S S S . \nB . . . . \nC . . . . \nD . . . . \n")
   end
 end
