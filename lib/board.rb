@@ -57,16 +57,14 @@ class Board
   end
   def render(show_ship = true)
     output = "  1 2 3 4 \n"
-    #add into an output? string.split
     letters =  ["A", "B", "C", "D"]
-
-    @cells.values.each_slice(4) do |cell_group|
-    letters.map do |letter|
+    letters.each do |letter|
+        @cells.values.each_slice(4) do |cell_group|
+          output << letter
           cell_group.each do |cell|
             output << " " + cell.render
           end
         end
-        output << letter + cell_group.join
       output <<  " \n"
     end
     output
