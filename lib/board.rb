@@ -1,12 +1,13 @@
 class Board
 
-  attr_reader :the_board, :numbers, :letters
+  attr_reader :numbers, :letters, :cells
   def initialize
-    @the_board = {}
+
+    @cells = generate_cells
   end
 
-  def cells
-    @the_board = {
+  def generate_cells
+     {
       "A1" => Cell.new("A1"),
       "A2" => Cell.new("A2"),
       "A3" => Cell.new("A3"),
@@ -23,116 +24,55 @@ class Board
       "D2" => Cell.new("D2"),
       "D3" => Cell.new("D3"),
       "D4" => Cell.new("D4")
-    }
+      }
   end
-#send a coordinate 1 by by in the method
-#takes an array, is this one a valid coordinate, use all? (ennumerabler) do all of you make this block true?
+
   def valid_coordinate?(key)
     cells.has_key?(key)
   end
 
   def valid_placement?(ship, coordinates)
-<<<<<<< HEAD
-    ship.length == coordinates.length
-    array = []
-    cells.keys.each_cons(ship.length) do |cell|
-    array << cell
-    end
-    array.any? do |a|
-    end
+    numbers = get_numbers(coordinates)
+    letters = get_letters(coordinates)
 
-    # def check_row
-    #   horizontal_array = []
-    #
-    #   cells.keys.each_cons(ship.length) do |key|
-    #     horizontal_array << key
-    #   end
-    #   horizontal_array.any? do |horizontal|
-    #     horizontal == coordinates
-    #   end
-
-      # not really sure, but probably going to need to do something similar.
-      # this is just an 'outline'
-  #   def check_columns
-
-  def valid_placement?(ship, coordinates)
-# require "pry"; binding.pry
-    #sets up the array for numbers
-    numbers = []
-    #iterates over the coordinates and puts the number string into array as integer
-    coordinates.each { |coordinate| numbers << coordinate[1].to_i }
-
-    #sets up the array for letters
-    letters = []
-    #iterates over the coordiantes and puts the letters into an array as numbers
-    coordinates.each { |coordinate| letters << coordinate[0].ord }
-
-    # if all letters are the same and the ship length == coordinate length and the second number is 1 more than the first(consecutive)
-    if letters.uniq.count == 1 && ship.length == coordinates.length && numbers.each_cons(2).all? { |first, second| second == first + 1 }
-      true
-    elsif
-      #same but reverse letters and numbers
-      numbers.uniq.count == 1 && ship.length == coordinates.length && letters.each_cons(2).all? { |first, second| second == first + 1 }
-      true
-    else
-      #or it's not valid
-      false
-    end
+    return false if coordinates.any? {|coordinate| @cells[coordinate].ship}
+    return false if ship.length != coordinates.length
+    return true if letters.uniq.count == 1 &&  numbers.each_cons(2).all? { |first, second| second == first + 1 }
+    return true if numbers.uniq.count == 1 &&  letters.each_cons(2).all? { |first, second| second == first + 1 }
+    false
   end
 
-    # value_arrays = []
-    # cells.values.each do |value|
-    #   value_arrays <<  value.split(/\W+/)
-    # end
+  def get_numbers(coordinates)
+      coordinates.map { |coordinate| coordinate[1].to_i }
+  end
 
-# make a game class
+  def get_letters(coordinates)
+      coordinates.map { |coordinate| coordinate[0].ord }
+  end
 
-# make a seperate player and computer class
+  def place(ship, coordinates)
+    coordinates.each do  |coordinate|
+      @cells[coordinate].place_ship(ship)
+    end
 
+  end
+  def valid_placement
 
-    # letters = []
-    # letters << cells.values.split(0)
-    # numbers = []
+  end
 
-    # cells.keys.each_cons.each(ship.length) do |key|
-    #   horizontal_array << key
-    # end
-    # horizontal_array.map do |array|
-    #   # delete-if or reject!
-    # end
-    # horizontal_array.any? do |horizontal|
-    #   horizontal == coordinates
-    # end
-
-
-#check if num lets are the same and consecutive
-  # def check_columns
-  #   require "pry"; binding.pry
-  #   vertical_array = []
-  #   horizontal_array.each_cons(4) do |array|
-  #     vertical_array << array
-  #   end
-  # end
-
-  # def valid_placement?(ship, coordinates)
-  #     # not really sure, but probably going to need to do something similar.
-  #     # this is just an 'outline'
->>>>>>> 1b78f0055f21f02a3c2dffb66815bda4cb3a1b3f
-  #     vertical_array = []
-  #
-  #     cells.keys.each_cons(ship.length) do |key|
-  #       vertical_array << key
-  #     # end
-  #     # vertical_array.any? do |vertical|
-  #     #   vertical == coordinates
-  #
-  #     vertical_array.transpose
-  #
-  # end
-  # vertical_array
-end
 end
 
+
+#inject and reduce same something
+#need accumulator
+#
+
+
+#cell 3 ship == cell 2 ship
+#assignment pattern a) need container
+    # think of . as iterate over our coordinates
+        # take individual coordinate and assign value of ship
+  # place the ship which already has the place_ship method
 #do with numbers
 #compare with coordinates to see if consecutive
 ###if diagonal or not -
