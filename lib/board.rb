@@ -2,7 +2,6 @@ class Board
 
   attr_reader :numbers, :letters, :cells
   def initialize
-
     @cells = generate_cells
   end
 
@@ -56,8 +55,21 @@ class Board
     end
 
   end
-  def valid_placement
+  def render(show_ship = true)
+    output = "  1 2 3 4 \n"
+    #add into an output? string.split
+    letters =  ["A", "B", "C", "D"]
 
+    @cells.values.each_slice(4) do |cell_group|
+    letters.map do |letter|
+          cell_group.each do |cell|
+            output << " " + cell.render
+          end
+        end
+        output << letter + cell_group.join
+      output <<  " \n"
+    end
+    output
   end
 
 end

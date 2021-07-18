@@ -27,15 +27,15 @@ attr_reader :coordinate, :ship
 
   def render(show_ship = false) #maybe instance variable? can't check if its true or false if I havent assigned it
     if show_ship == false && @is_fired_upon == true && @is_empty == false && ship.sunk? == true
-      "X"
+    "X"
     elsif show_ship == false && @is_fired_upon == true && @is_empty == false
-      "H"
+    "H"
     elsif show_ship == false && @is_fired_upon == true && @is_empty == true
-      "M"
+    "M"
     elsif show_ship == true
-      "S"
+    "S"
     else
-      "."
+    "."
     end
   end
 end
