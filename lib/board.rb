@@ -1,6 +1,6 @@
 class Board
 
-  attr_reader :the_board, :numbers, :letters
+  attr_reader :the_board
   def initialize
     @the_board = {}
   end
