@@ -84,9 +84,6 @@ RSpec.describe Board do
     cell_2 = board.cells["A2"]
     cell_3 = board.cells["A3"]
     expect(cell_3.ship == cell_2.ship).to eq(true)
-    expect(board.cells["A1"]).to eq(cell_1)
-    expect(board.cells["A2"]).to eq(cell_2)
-    expect(board.cells["A3"]).to eq(cell_3)
 
   end
 

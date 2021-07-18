@@ -1,11 +1,11 @@
 class Board
 
-  attr_reader :numbers, :letters, :cells
+  attr_reader :the_board
   def initialize
-    @cells = generate_cells
+    @cells = cells
   end
 
-  def generate_cells
+  def cells
      {
       "A1" => Cell.new("A1"),
       "A2" => Cell.new("A2"),
@@ -59,8 +59,8 @@ class Board
     output = "  1 2 3 4 \n"
     letters =  ["A", "B", "C", "D"]
     letters.each do |letter|
+      output << letter
         @cells.values.each_slice(4) do |cell_group|
-          output << letter
           cell_group.each do |cell|
             output << " " + cell.render
           end
