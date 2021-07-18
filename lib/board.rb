@@ -1,6 +1,6 @@
 class Board
 
-  attr_reader :the_board
+  attr_reader :cells
   def initialize
     @cells = cells
   end
@@ -67,9 +67,9 @@ class Board
         end
       output <<  " \n"
     end
+
     output
   end
-
 end
 
 
