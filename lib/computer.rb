@@ -1,6 +1,6 @@
 class Computer
 
-  def initialize
+  def initialize(cruiser, submarine)
 
   end
 
