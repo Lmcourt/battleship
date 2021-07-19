@@ -3,6 +3,7 @@ class Board
   attr_reader :cells
   def initialize
     @cells = cells
+
   end
 
   def cells
@@ -42,6 +43,7 @@ class Board
     numbers = get_numbers(coordinates)
     letters = get_letters(coordinates)
 
+    #checks that ships don't overlap
     return false if coordinates.any? {|coordinate| @cells[coordinate].ship}
     return false if ship.length != coordinates.length
     return true if letters.uniq.count == 1 &&  numbers.each_cons(2).all? { |first, second| second == first + 1 }
@@ -50,8 +52,11 @@ class Board
   end
 
   def place(ship, coordinates)
-    coordinates.each { |coordinate| @cells[coordinate].place_ship(ship) }
-
+    #checks that placement is valid before placing
+    # if valid_placement?(ship, coordinates) == true
+      # require "pry"; binding.pry
+      coordinates.each { |coordinate| @cells[coordinate].place_ship(ship) }
+    # end
   end
 
   def render(show_ship = false)
