@@ -1,3 +1,5 @@
+require './lib/board'
+require './lib/ship'
 class Computer
 
   attr_reader :ships, :board
@@ -16,16 +18,29 @@ class Computer
         #keeps looping until valid
         coordinates = @board.cells.keys.sample(ship.length)
       end
-      require "pry"; binding.pry
+
     end
     #calls the board to place the damn ships
+
     @board.place(ship, coordinates)
   end
 
   #should theoretically display the computer board from the board render method
   def displays_comp_board
-    # require "pry"; binding.pry
     @board.render
+  end
+  # the computer takes a shot in a valid random location
+  #should not fire on a space it has fired upon
+
+  def computer_shot
+  # the computer chooses a valid location to fire upon based on coordinates
+    @board.cells.keys.sample #should give us a
+  # the computer fires upon a random location
+
+  # the results should be displayed
+
+  #shot hit, miss and sunk
+
   end
 end
 
