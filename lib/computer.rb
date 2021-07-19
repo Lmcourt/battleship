@@ -1,33 +1,41 @@
+require './lib/board'
+require './lib/ship'
+
+
 class Computer
 
-  attr_reader :ships, :board
+  attr_reader :ships, :computer_board
   def initialize
     @ships = [Ship.new("Submarine", 2), Ship.new("Cruiser", 3)]
-    @board = Board.new
+    @computer_board = Board.new
   end
 
   def computer_placement
     #takes the array of ships and for each ship does the thing
-    comp_ships = @ships.map do |ship|
+    comp_ships = @ships.each do |ship|
       # generates random cells
-      coordinates = @board.cells.keys.sample(ship.length)
+      coordinates = @computer_board.cells.keys.sample(ship.length)
       #until loop to see if they're valid placements
-      until @board.valid_placement?(ship, coordinates) == true
+      until @computer_board.valid_placement?(ship, coordinates) == true
         #keeps looping until valid
-        coordinates = @board.cells.keys.sample(ship.length)
+        coordinates = @computer_board.cells.keys.sample(ship.length)
       end
-      require "pry"; binding.pry
+      # require "pry"; binding.pry
+      @computer_board.place(ship, coordinates)
+      @computer_board.place(ship, coordinates)
     end
-    #calls the board to place the damn ships
-    @board.place(ship, coordinates)
   end
 
-  #should theoretically display the computer board from the board render method
-  def displays_comp_board
-    # require "pry"; binding.pry
-    @board.render
+  def computer_shot
+    @computer_board.cells.keys.sample
   end
 end
+
+  #should theoretically display the computer board from the board render method
+  # def displays_comp_board
+  #   # require "pry"; binding.pry
+  #   puts @board.render
+  # end
 
 # else
 #   coordinates = @board.cells.keys.to_a.sample(ship.length)
