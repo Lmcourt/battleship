@@ -61,8 +61,23 @@ class Player
     @player_board.place(@submarine, @cruiser_coordinates)
   end
 
-  def displays_player_board
-    @player_board.render(true)
+  def player_select_coordinate
+    puts "Enter a coordinate. Make sure it's valid."
+    selected_coord = gets.chomp
+    if @player_board.valid_coordinate? == false
+      puts "Waiting for a valid coordinate..."
+      until @player_board.valid_coordinate? == true
+      select_coord = gets.chomp
+      end
+    end
+  end
+  def player_fires
+    @computer_board.cells[selected_coord].fired_upon
+    selected_coord
+end
+
+  def player_renders
+    @computer_board.cells[player_fires].render
   end
 end
     # require "pry"; binding.pry

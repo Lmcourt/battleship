@@ -34,17 +34,37 @@ end
     @computer.computer_placement
     @player.player_cruiser_placement
     @player.player_submarine_placement
-    @computer.select_coordinate
-    @computer.computer_fires
-    @computer.computer_renders
-    turn
+
+    # turn
     end_game
   end
   def turn
+    @computer_board.computer_board.render
+    @player_board.render
+    @computer.select_coordinate
+    @computer.computer_fires
     @computer.computer_renders
+    @computer.computer_renders
+    @player.player_select_coordinate
+    @player.player_fires
   end
-end
+  def end_game
+      if @player.cruiser.sunk? && player.submarine.sunk?
+        puts "You have been defeated!"
+      else
+        puts "victory!"
+      end
 
+      puts "play again, or quit?"
+      user_input = gets.chomp.upcase
+      if user_input == "play again"
+        play_game
+      elsif user_input == "quit"
+        puts "peace!"
+  
+      end
+    end
+end
   #
   #  if user_input == "q"
   #    puts "Goodbye!"
