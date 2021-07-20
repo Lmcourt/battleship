@@ -44,12 +44,7 @@ class Player
   end
 
   def player_submarine_placement
-    puts "I put my ships where you will never find them."
-    puts "Now it's your turn to place your ships."
     puts "Your submarine takes 3 coordinates and your submarine takes 2."
-    #i think this will show the players player_board
-
-
     puts "Enter the coordinates for your Submarine"
     submarine_answer = gets.chomp
     @submarine_coordinates = submarine_answer.split(", ")
@@ -57,7 +52,6 @@ class Player
     if @player_board.valid_placement?(@submarine, @submarine_coordinates) == false
       puts "Try again. This time with valid coordinates"
       until @player_board.valid_placement?(@submarine, @submarine_coordinates) == true
-        puts "That's still not valid."
         submarine_answer = gets.chomp
         @submarine_coordinates = submarine_answer.split(", ")
       end
@@ -80,4 +74,32 @@ class Player
     @player_rend = computer.computer_board.cells[@selected_coord].render
     # computer.computer_board.cells[player_fires(computer)].render
   end
+
+    #make this for player
+  # def comp_render_and_report
+  #   if @player_board.cells[computer_fires].render == "M"
+  #     puts "I missed but I'm not throwing away my SHOT."
+  #   elsif @player_board.cells[computer_fires].render == "H"
+  #     puts "I shot at #{select_coordinate} and it's a hit. I'm gonna win."
+  #   else @player_board.cells[computer_fires].render == "X"
+  #     puts "I shot at #{select_coordinate} GET SUNK."
+  #   end
+  # end
+  #
+  #  something like this
+  
+  # def player_fires
+  #   @computer_board.cells[player_select_coordinate(computer)].fire_upon
+  #   @selected_coord
+  # end
+  #
+  # def player_render_and_report
+  #   if @computer_board.cells[player_fires].render == "M"
+  #     puts "I missed but I'm not throwing away my SHOT."
+  #   elsif @computer_board.cells[player_fires].render == "H"
+  #     puts "I shot at #{select_coordinate} and it's a hit. I'm gonna win."
+  #   else @computer_board.cells[player_fires].render == "X"
+  #     puts "I shot at #{select_coordinate} GET SUNK."
+  #   end
+  # end
 end
