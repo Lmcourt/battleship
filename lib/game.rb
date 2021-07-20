@@ -34,14 +34,35 @@ end
     @computer.computer_placement
     @player.player_cruiser_placement
     @player.player_submarine_placement
-    @computer.select_coordinate
-    @computer.computer_fires
-    @computer.computer_renders
     turn
     end_game
   end
   def turn
+    #turn until all ships hit on board
+    puts @computer_board.render
+    puts @player_board.render(true)
+    @computer.select_coordinate
+    @computer.computer_fires
     @computer.computer_renders
+    @player.player_select_coordinate(computer)
+    puts results
+  end
+
+  def results
+    # require "pry"; binding.pry
+    if @player.player_rend == "M"
+      puts "You shot at #{player.selected_coord} missed! Haha."
+    elsif @player.player_rend == "H"
+      puts "your shot at #{player.selected_coord} hit me. Ouch."
+    elsif @player.player_rend == "X"
+      puts "You sunk my ship! I'm gonna go cry now."
+    else
+      puts "Nope."
+    end
+  end
+
+  def end_game
+
   end
 end
 
