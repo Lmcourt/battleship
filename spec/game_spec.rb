@@ -59,10 +59,4 @@ RSpec.describe Game do
     expect(game.game_over?).to eq(true)
 
   end
-  #game has ended test, same setup as computer has lost
 end
-# game has player board
-# game has computer board
-
-# game has computer
-# game has player
