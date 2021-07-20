@@ -43,12 +43,13 @@ end
       puts @computer_board.render
       puts " ==== YOU ARE ONLY HUMAN ===="
       puts @player_board.render(true)
-      @computer.select_coordinate(@player)
-      @computer.computer_fires(@player)
-      require "pry"; binding.pry
+      # require "pry"; binding.pry
+      # @computer.select_coordinate(@computer_board)
+      @computer.computer_fires(@player_board)
       @player.player_select_coordinate(@computer_board)
-      # @computer.comp_render_and_report(@player_board)
-      # @player.player_render_and_report
+      # require "pry"; binding.pry
+      @computer.comp_render_and_report(@player_board)
+      @player.player_render_and_report(@computer_board)
     # end
   end
 
