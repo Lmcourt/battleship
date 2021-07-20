@@ -8,10 +8,10 @@ class Game
   attr_reader :end_message, :computer
   def initialize
     @end_message = end_message
-    @computer = Computer.new
-    @player = Player.new
     @computer_board = Board.new
     @player_board = Board.new
+    @computer = Computer.new(@player_board, @computer_board)
+    @player = Player.new(@player_board, @computer_board)
   end
   #
 
@@ -34,8 +34,14 @@ end
     @computer.computer_placement
     @player.player_cruiser_placement
     @player.player_submarine_placement
+    @computer.select_coordinate
+    @computer.computer_fires
+    @computer.computer_renders
     turn
     end_game
+  end
+  def turn
+    @computer.computer_renders
   end
 end
 
