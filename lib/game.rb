@@ -35,47 +35,39 @@ end
     @player.player_cruiser_placement
     @player.player_submarine_placement
     turn
-    end_game
-  end
-  
-  def turn
-    #turn until all ships hit on board
-    puts @computer_board.render
-    puts @player_board.render(true)
-    @computer.select_coordinate
-    @computer.computer_fires
-    @computer.computer_renders
-    @player.player_select_coordinate(computer)
-    puts results
   end
 
-  def results
-    # require "pry"; binding.pry
-    if @player.player_rend == "M"
-      puts "You shot at #{player.selected_coord} missed! Haha."
-    elsif @player.player_rend == "H"
-      puts "your shot at #{player.selected_coord} hit me. Ouch."
-    elsif @player.player_rend == "X"
-      puts "You sunk my ship! I'm gonna go cry now."
-    else
-      puts "Nope."
-    end
+  def turn
+    # until end_game do
+      puts " ==== DEEP THOUGHT(The great supercomputer) ===="
+      puts @computer_board.render
+      puts " ==== YOU ARE ONLY HUMAN ===="
+      puts @player_board.render(true)
+      @computer.select_coordinate(player)
+      @computer.computer_fires(player)
+      @player.player_select_coordinate(computer)
+      @computer.comp_render_and_report(player)
+      # @player.player_render_and_report
+    # end
   end
 
   def end_game
-      if @player.cruiser.sunk? && player.submarine.sunk?
-        puts "You have been defeated!"
-      elsif @computer.ships.sunk?
-        puts "victory!"
-      end
+    if @player.cruiser.health == 0 && @player.submarine.health == 0
+      puts "You have been defeated!"
+    elsif @computer.ships.health == 0
+      puts "victory!"
+    end
+    play_again
+  end
 
-      puts "play again, or quit?"
-      user_input = gets.chomp.downcase
+  def play_again
+    puts "play again, or quit?"
+    user_input = gets.chomp.downcase
       if user_input == "play again"
-        play_game
+        start
       elsif user_input == "quit"
         puts "peace!"
+        #else that wasnt valid try again? But seriously only if we have time
       end
-   end
+  end
 end
-
