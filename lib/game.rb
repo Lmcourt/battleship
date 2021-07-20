@@ -5,22 +5,22 @@ require './lib/player'
 require './lib/computer'
 
 class Game
-  attr_reader :end_message, :computer
+  attr_reader :end_message, :computer, :computer_board, :player_board, :player
   def initialize
     @end_message = end_message
     @computer_board = Board.new
     @player_board = Board.new
     @computer = Computer.new(@player_board, @computer_board)
     @player = Player.new(@player_board, @computer_board)
+
   end
-  #
 
 def welcome
   puts "Welcome to BATTLESHIP"
   puts "Enter P to play. Enter Q to quit."
 end
 
-  def start
+  def start #dont test
     welcome
     user_input = gets.chomp.upcase
     if user_input == "P"
@@ -34,11 +34,19 @@ end
     @computer.computer_placement
     @player.player_cruiser_placement
     @player.player_submarine_placement
-    turn
+    until game_over?
+      turn
+    end
+      end_game_message
+  end
+
+  def game_over?
+  return true if @player.cruiser.health == 0 && @player.submarine.health == 0 || @computer.ships.all? {|ship| ship.health == 0}
+
   end
 
   def turn
-    # until end_game do
+      until game_over? do
       puts " ==== DEEP THOUGHT(The great supercomputer) ===="
       puts @computer_board.render
       puts " ==== YOU ARE ONLY HUMAN ===="
@@ -53,16 +61,17 @@ end
     # end
   end
 
-  def end_game
+  def end_game_message
     if @player.cruiser.health == 0 && @player.submarine.health == 0
       puts "You have been defeated!"
-    elsif @computer.ships.health == 0
-      puts "victory!"
+       return "You have been defeated!"
+    elsif @computer.ships.all? {|ship| ship.health == 0}
+      puts "Victory!"
+       "Victory!"
     end
-    play_again
   end
 
-  def play_again
+  def play_again #dont test
     puts "play again, or quit?"
     user_input = gets.chomp.downcase
       if user_input == "play again"
@@ -73,3 +82,8 @@ end
       end
   end
 end
+game = Game.new
+game.start
+game.play_again
+ #add loop
+#if p, place ships -- loop starts after ship placed
