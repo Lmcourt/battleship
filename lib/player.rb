@@ -4,7 +4,7 @@ require './lib/ship'
 
 class Player
 
-  attr_reader :submarine, :cruiser
+  attr_reader :submarine, :cruiser, :selected_coord, :player_rend, :player_fired
   def initialize(player_board, computer_board)
     @submarine = Ship.new("Submarine", 2)
     @cruiser = Ship.new("Cruiser", 3)
@@ -12,6 +12,9 @@ class Player
     @computer_board = computer_board
     @cruiser_coordinates = []
     @submarine_coordinates = []
+    @selected_coord = selected_coord
+    @player_rend = player_rend
+    @player_fired = player_fired
   end
 
   def player_cruiser_placement
@@ -54,37 +57,27 @@ class Player
     if @player_board.valid_placement?(@submarine, @submarine_coordinates) == false
       puts "Try again. This time with valid coordinates"
       until @player_board.valid_placement?(@submarine, @submarine_coordinates) == true
+        puts "That's still not valid."
         submarine_answer = gets.chomp
         @submarine_coordinates = submarine_answer.split(", ")
       end
     end
-    @player_board.place(@submarine, @cruiser_coordinates)
+    @player_board.place(@submarine, @submarine_coordinates)
   end
 
-  def player_select_coordinate
+  def player_select_coordinate(computer)
     puts "Enter a coordinate. Make sure it's valid."
-    selected_coord = gets.chomp
-    if @player_board.valid_coordinate? == false
+    @selected_coord = gets.chomp
+    if computer.computer_board.valid_coordinate?(@selected_coord) == false
       puts "Waiting for a valid coordinate..."
-      until @player_board.valid_coordinate? == true
-      select_coord = gets.chomp
+      until computer.computer_board.valid_coordinate?(@selected_coord) == true
+        puts "Still waiting.."
+        @selected_coord = gets.chomp
       end
+      #inform its already been fired on
     end
-  end
-  def player_fires
-    @computer_board.cells[selected_coord].fired_upon
-    selected_coord
-end
-
-  def player_renders
-    @computer_board.cells[player_fires].render
+    @player_fired = computer.computer_board.cells[@selected_coord].fire_upon
+    @player_rend = computer.computer_board.cells[@selected_coord].render
+    # computer.computer_board.cells[player_fires(computer)].render
   end
 end
-    # require "pry"; binding.pry
-
-
-
-  #player board
-  #player picks coordinate
-  # if already fired on, picks again
-  #fires at computer board
