@@ -6,9 +6,11 @@ require './lib/cell'
 
 class Computer
 
-  attr_reader :ships, :computer_board, :computer_fires, :comp_render_and_report
+  attr_reader :ships, :computer_board, :computer_fires, :comp_render_and_report, :cruiser, :submarine
   def initialize(player_board, computer_board)
     @ships = [Ship.new("Submarine", 2), Ship.new("Cruiser", 3)]
+    @submarine = @ships.first
+    @cruiser = @ships.last
     @computer_board = computer_board
     @player_board = player_board
     # @comp_render_and_report = comp_render_and_report(player_board)
