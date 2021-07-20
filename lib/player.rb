@@ -59,7 +59,7 @@ class Player
     @player_board.place(@submarine, @submarine_coordinates)
   end
   def player_select_coordinate(computer_board)
-    require "pry"; binding.pry
+    # require "pry"; binding.pry
     puts "Enter a coordinate. Make sure it's valid."
     @selected_coord = gets.chomp
     if computer_board.valid_coordinate?(@selected_coord) == false
@@ -70,12 +70,27 @@ class Player
       end
       #inform its already been fired on
     end
-    @player_fired = computer_board.cells[@selected_coord].fire_upon
-    @player_rend = computer_board.cells[@selected_coord].render
+    # @player_fired = computer_board.cells[@selected_coord].fire_upon
+    # @player_rend = computer_board.cells[@selected_coord].render
     # computer.computer_board.cells[player_fires(computer)].render
   end
 
-    #make this for player
+  def player_fires(computer_board)
+    computer_board.cells[@selected_coord].fire_upon
+    @selected_coord
+  end
+
+  def player_render_and_report(computer_board)
+    # require "pry"; binding.pry
+    if computer_board.cells[player_fires(computer_board)].render == "X"
+      puts "You shot at #{@selected_coord} GET SUNK."
+    elsif computer_board.cells[player_fires(computer_board)].render == "H"
+      puts "I shot at #{@selected_coord} and it's a hit. I'm gonna win."
+    elsif computer_board.cells[player_fires(computer_board)].render == "M"
+      puts "You missed but I'm not throwing away my SHOT."
+    end
+  end
+    #make this for computer
   # def comp_render_and_report
   #   if @player_board.cells[computer_fires].render == "M"
   #     puts "I missed but I'm not throwing away my SHOT."
