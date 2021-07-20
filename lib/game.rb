@@ -46,7 +46,7 @@ end
   end
 
   def turn
-      until game_over? do
+      # until game_over? do
       puts " ==== DEEP THOUGHT(The great supercomputer) ===="
       puts @computer_board.render
       puts " ==== YOU ARE ONLY HUMAN ===="
@@ -55,7 +55,7 @@ end
       # @computer.select_coordinate(@computer_board)
       @computer.computer_fires(@player_board)
       @player.player_select_coordinate(@computer_board)
-      # require "pry"; binding.pry
+      @player.player_fires(@computer_board)
       @computer.comp_render_and_report(@player_board)
       @player.player_render_and_report(@computer_board)
     # end
@@ -68,6 +68,8 @@ end
     elsif @computer.ships.all? {|ship| ship.health == 0}
       puts "Victory!"
        "Victory!"
+    else
+      " "
     end
   end
 
@@ -79,11 +81,11 @@ end
       elsif user_input == "quit"
         puts "peace!"
         #else that wasnt valid try again? But seriously only if we have time
+      else
+        puts "You suck. Goodbye."
       end
   end
 end
-game = Game.new
-game.start
-game.play_again
+
  #add loop
 #if p, place ships -- loop starts after ship placed

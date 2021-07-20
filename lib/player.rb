@@ -76,17 +76,17 @@ class Player
   end
 
   def player_fires(computer_board)
-    computer_board.cells[@selected_coord].fire_upon
+    computer_board.cells[@selected_coord.to_sym].fire_upon
     @selected_coord
   end
 
   def player_render_and_report(computer_board)
     # require "pry"; binding.pry
-    if computer_board.cells[player_fires(computer_board)].render == "X"
+    if computer_board.cells[@selected_coord.to_sym].render == "X"
       puts "You shot at #{@selected_coord} GET SUNK."
-    elsif computer_board.cells[player_fires(computer_board)].render == "H"
+    elsif computer_board.cells[@selected_coord.to_sym].render == "H"
       puts "I shot at #{@selected_coord} and it's a hit. I'm gonna win."
-    elsif computer_board.cells[player_fires(computer_board)].render == "M"
+    elsif computer_board.cells[@selected_coord.to_sym].render == "M"
       puts "You missed but I'm not throwing away my SHOT."
     end
   end
