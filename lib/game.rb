@@ -8,8 +8,8 @@ class Game
   attr_reader :end_message, :computer
   def initialize
     @end_message = end_message
-    @computer_board = Computer.new
-    @player_board = Player.new
+    @computer_board = Board.new
+    @player_board = Board.new
     @computer = Computer.new(@player_board, @computer_board)
     @player = Player.new(@player_board, @computer_board)
   end
@@ -42,7 +42,7 @@ end
   end
   def turn
     @computer.computer_renders
-end
+  end
 end
 
   #

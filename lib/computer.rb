@@ -1,11 +1,12 @@
 require './lib/board'
 require './lib/ship'
+require './lib/cell'
 
 
 class Computer
 
   attr_reader :ships, :computer_board
-  def initialize
+  def initialize(player_board, computer_board)
     @ships = [Ship.new("Submarine", 2), Ship.new("Cruiser", 3)]
     @computer_board = computer_board
     @player_board = player_board
@@ -30,6 +31,16 @@ class Computer
   def select_coordinate
     @player_board.cells.keys.sample
   end
+
+  def computer_fires
+   # select_coordinate[2] == false
+    @player_board.cells[select_coordinate].fire_upon
+    select_coordinate
+  end
+
+  def computer_renders
+    @player_board.cells[computer_fires].render
+  end
   # the computer takes a shot in a valid random location
   #should not fire on a space it has fired upon
 end
@@ -41,6 +52,15 @@ end
 
   #shot hit, miss and sunk
 
+
+    # @cell.render
+    # if select_coordinate[2] == false
+    #   cell.render
+    # # else
+    # #    select_coordinate until
+    # #    select_coordinate[2] == false
+    # # end
+    # cell.render
 
   #should theoretically display the computer board from the board render method
   # def displays_comp_board

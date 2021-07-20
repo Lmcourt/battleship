@@ -4,12 +4,12 @@ require './lib/ship'
 
 class Player
 
-  attr_reader :submarine, :cruiser, :board
-  def initialize
+  attr_reader :submarine, :cruiser
+  def initialize(player_board, computer_board)
     @submarine = Ship.new("Submarine", 2)
     @cruiser = Ship.new("Cruiser", 3)
     @player_board = player_board
-    @computer_board - computer_board
+    @computer_board = computer_board
     @cruiser_coordinates = []
     @submarine_coordinates = []
   end
@@ -44,7 +44,7 @@ class Player
     puts "I put my ships where you will never find them."
     puts "Now it's your turn to place your ships."
     puts "Your submarine takes 3 coordinates and your submarine takes 2."
-    #i think this will show the players board
+    #i think this will show the players player_board
 
 
     puts "Enter the coordinates for your Submarine"
