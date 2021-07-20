@@ -29,7 +29,7 @@ class Player
     puts "D . . . . \n"
 
 
-    puts "Enter the coordinates for your Cruiser"
+    puts "Enter the coordinates for your Cruiser (capital letters separated by commas)"
     cruiser_answer = gets.chomp
     @cruiser_coordinates = cruiser_answer.split(", ")
     # require "pry"; binding.pry
@@ -44,7 +44,7 @@ class Player
   end
 
   def player_submarine_placement
-    puts "Your submarine takes 3 coordinates and your submarine takes 2."
+    puts "Your submarine takes 3 coordinates and your submarine takes 2 (capital letters separated by commas)"
     puts "Enter the coordinates for your Submarine"
     submarine_answer = gets.chomp
     @submarine_coordinates = submarine_answer.split(", ")
@@ -87,7 +87,7 @@ class Player
   # end
   #
   #  something like this
-  
+
   # def player_fires
   #   @computer_board.cells[player_select_coordinate(computer)].fire_upon
   #   @selected_coord
