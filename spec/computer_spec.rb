@@ -19,7 +19,6 @@ RSpec.describe do
   # it 'places ships' do
   #   computer = Computer.new
   #   ships = [Ship.new("Submarine", 2), Ship.new("Cruiser", 3)]
-  #   # require "pry"; binding.pry
   #
   #   computer.computer_placement
   #   # expect(computer.board.place(ship, coordinates)).to be_a(Array)
@@ -33,6 +32,14 @@ RSpec.describe do
     computer.displays_comp_board
 
     expect(computer.displays_comp_board).to eq(board.render)
+
+  end
+  it 'prompts computer to take a shot' do
+    computer = Computer.new
+    board = Board.new
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
+    expect(computer.computer_fires).to eq(true)
 
   end
 end

@@ -41,7 +41,17 @@ class Computer
   def computer_renders
     @player_board.cells[computer_fires].render
   end
+  # the computer takes a shot in a valid random location
+  #should not fire on a space it has fired upon
 end
+  # the computer chooses a valid location to fire upon based on coordinates
+   #should give us a
+  # the computer fires upon a random location
+
+  # the results should be displayed
+
+  #shot hit, miss and sunk
+
 
     # @cell.render
     # if select_coordinate[2] == false

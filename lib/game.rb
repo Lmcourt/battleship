@@ -37,6 +37,7 @@ end
     turn
     end_game
   end
+  
   def turn
     #turn until all ships hit on board
     puts @computer_board.render
@@ -62,40 +63,19 @@ end
   end
 
   def end_game
+      if @player.cruiser.sunk? && player.submarine.sunk?
+        puts "You have been defeated!"
+      elsif @computer.ships.sunk?
+        puts "victory!"
+      end
 
-  end
+      puts "play again, or quit?"
+      user_input = gets.chomp.downcase
+      if user_input == "play again"
+        play_game
+      elsif user_input == "quit"
+        puts "peace!"
+      end
+   end
 end
 
-
-  #
-  #  if user_input == "q"
-  #    puts "Goodbye!"
-  #  end
-  # end
-
-  # def setup
-  #   # computer places ships
-  #   # player gets message to place ships
-  #   # player places ship
-  #   # if placements are valid show rendered player board with ship showing
-  #   # player places next ship
-  #   # if placements are valid shows rendered player board with both ships
-  # end
-  #
-  # def turn
-  #   #displays boards
-  #   # player picks coordinate to fire on
-  #   # computer choses random coordinate to fire on
-  #   # reports result of playrs shot
-  #   # reports result of computer shot
-  #
-  # end
-  #
-  # def results
-  #   # displays players shot m/h/s
-  #   # displays computer shot m/h/s
-  # end
-  #
-  # def end_message
-  #
-  # end

@@ -81,16 +81,3 @@ class Player
     # computer.computer_board.cells[player_fires(computer)].render
   end
 end
-    # require "pry"; binding.pry
-  # def player_fires(computer)
-  #   # require "pry"; binding.pry
-  # end
-
-  # def player_renders(computer)
-  # end
-
-
-  #player board
-  #player picks coordinate
-  # if already fired on, picks again
-  #fires at computer board
