@@ -39,9 +39,7 @@ RSpec.describe do
     board = Board.new
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2)
-
-require "pry"; binding.pry
-    expect(computer.computer_shot).to eq(true)
+    expect(computer.computer_fires).to eq(true)
 
   end
 end
