@@ -7,7 +7,8 @@ class Computer
   attr_reader :ships, :computer_board
   def initialize
     @ships = [Ship.new("Submarine", 2), Ship.new("Cruiser", 3)]
-    @computer_board = Board.new
+    @computer_board = computer_board
+    @player_board = player_board
   end
 
   def computer_placement
@@ -26,10 +27,20 @@ class Computer
     end
   end
 
-  def computer_shot
-    @computer_board.cells.keys.sample
+  def select_coordinate
+    @player_board.cells.keys.sample
   end
+  # the computer takes a shot in a valid random location
+  #should not fire on a space it has fired upon
 end
+  # the computer chooses a valid location to fire upon based on coordinates
+   #should give us a
+  # the computer fires upon a random location
+
+  # the results should be displayed
+
+  #shot hit, miss and sunk
+
 
   #should theoretically display the computer board from the board render method
   # def displays_comp_board
