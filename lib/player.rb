@@ -9,7 +9,6 @@ class Player
     @submarine = Ship.new("Submarine", 2)
     @cruiser = Ship.new("Cruiser", 3)
     @player_board = player_board
-    @computer_board = Board.new
     @cruiser_coordinates = []
     @submarine_coordinates = []
     @selected_coord = selected_coord
@@ -62,22 +61,28 @@ class Player
     # require "pry"; binding.pry
     puts "Enter a coordinate. Make sure it's valid."
     @selected_coord = gets.chomp
-    if computer_board.valid_coordinate?(@selected_coord) == false
+    until computer_board.valid_coordinate?(@selected_coord) == true
       puts "Waiting for a valid coordinate..."
-      until computer_board.valid_coordinate?(@selected_coord) == true
-        puts "Still waiting.."
-        @selected_coord = gets.chomp
-      end
-      #inform its already been fired on
+      @selected_coord = gets.chomp
     end
+      @selected_coord
+  end
+
+      # loop do
+      #   puts "Still waiting.."
+      #   @selected_coord = gets.chomp
+      #   break if computer_board.valid_coordinate?(@selected_coord) == true
+      # end
+
+      #inform its already been fired on
     # @player_fired = computer_board.cells[@selected_coord].fire_upon
     # @player_rend = computer_board.cells[@selected_coord].render
     # computer.computer_board.cells[player_fires(computer)].render
-  end
 
   def player_fires(computer_board)
     computer_board.cells[@selected_coord.to_sym].fire_upon
-    @selected_coord
+    require "pry"; binding.pry
+    computer_board
   end
 
   def player_render_and_report(computer_board)
