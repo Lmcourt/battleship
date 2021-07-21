@@ -4,7 +4,7 @@ require './lib/ship'
 
 class Player
 
-  attr_reader :submarine, :cruiser, :selected_coord, :player_rend, :player_fired
+  attr_reader :submarine, :cruiser
   def initialize(player_board, computer_board)
     @submarine = Ship.new("Submarine", 2)
     @cruiser = Ship.new("Cruiser", 3)
@@ -12,9 +12,7 @@ class Player
     @computer_board = Board.new
     @cruiser_coordinates = []
     @submarine_coordinates = []
-    @selected_coord = selected_coord
-    @player_rend = player_rend
-    @player_fired = player_fired
+
   end
 
   def player_cruiser_placement
@@ -58,35 +56,49 @@ class Player
     end
     @player_board.place(@submarine, @submarine_coordinates)
   end
-  def player_select_coordinate(computer_board)
-    # require "pry"; binding.pry
-    puts "Enter a coordinate. Make sure it's valid."
-    @selected_coord = gets.chomp
-    if computer_board.valid_coordinate?(@selected_coord) == false
-      puts "Waiting for a valid coordinate..."
-      until computer_board.valid_coordinate?(@selected_coord) == true
-        puts "Still waiting.."
-        @selected_coord = gets.chomp
-      end
-      #inform its already been fired on
+  def player_select_coordinate
+    require "pry"; binding.pry
+    puts "Enter coordinate for your shot."
+    player_shot = gets.chomp
+    player_shot.to_sym
+
+    until @computer_board.valid_coordinate?(player_shot) && @computer_board.cells[player_shot].fired_upon? == false
+      puts "Please try again. Enter a valid coordinate"
+      player_shot = gets.chomp
     end
+
+    @computer_board.cells[player_shot].fire_upon
+    player_shot
+    require "pry"; binding.pry
+  end
+    # require "pry"; binding.pry
+    # puts "Enter a coordinate. Make sure it's valid."
+    # selected_coord = gets.chomp
+    # if @computer_board.valid_coordinate?(selected_coord) == false
+    #   puts "Waiting for a valid coordinate..."
+    #   until
+    #     @computer_board.valid_coordinate?(selected_coord) == true
+    #     puts "Still waiting.."
+    #     selected_coord = gets.chomp
+    #   end
+    #   @computer_board.cells[selected_coord].to_sym.fire_upon
+    #   selected_coord
+    # end
     # @player_fired = computer_board.cells[@selected_coord].fire_upon
     # @player_rend = computer_board.cells[@selected_coord].render
     # computer.computer_board.cells[player_fires(computer)].render
-  end
 
-  def player_fires(computer_board)
-    computer_board.cells[@selected_coord.to_sym].fire_upon
-    @selected_coord
-  end
 
-  def player_render_and_report(computer_board)
-    # require "pry"; binding.pry
-    if computer_board.cells[@selected_coord.to_sym].render == "X"
-      puts "You shot at #{@selected_coord} GET SUNK."
-    elsif computer_board.cells[@selected_coord.to_sym].render == "H"
-      puts "I shot at #{@selected_coord} and it's a hit. I'm gonna win."
-    elsif computer_board.cells[@selected_coord.to_sym].render == "M"
+  # def player_fires(computer_board)
+  #   player_fired
+  # end
+
+  def player_render_and_report(player_select_coordinate)
+    if @computer_board.cells[player_select_coordinate].render == "X"
+      puts "You shot at #{selected_coord} GET SUNK."
+    elsif @computer_board.cells[player_select_coordinate].render == "H"
+      puts "I shot at #{selected_coord} and it's a hit. I'm gonna win."
+    elsif @computer_board.cells[player_select_coordinate].render == "M"
       puts "You missed but I'm not throwing away my SHOT."
     end
   end
