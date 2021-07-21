@@ -9,7 +9,6 @@ class Player
     @submarine = Ship.new("Submarine", 2)
     @cruiser = Ship.new("Cruiser", 3)
     @player_board = player_board
-    @computer_board = Board.new
     @cruiser_coordinates = []
     @submarine_coordinates = []
 
@@ -56,38 +55,23 @@ class Player
     end
     @player_board.place(@submarine, @submarine_coordinates)
   end
-  def player_select_coordinate
-    require "pry"; binding.pry
-    puts "Enter coordinate for your shot."
-    player_shot = gets.chomp
-    player_shot.to_sym
 
-    until @computer_board.valid_coordinate?(player_shot) && @computer_board.cells[player_shot].fired_upon? == false
-      puts "Please try again. Enter a valid coordinate"
-      player_shot = gets.chomp
-    end
-
-    @computer_board.cells[player_shot].fire_upon
-    player_shot
-    require "pry"; binding.pry
-  end
+  def player_select_coordinate(computer_board)
     # require "pry"; binding.pry
-    # puts "Enter a coordinate. Make sure it's valid."
-    # selected_coord = gets.chomp
-    # if @computer_board.valid_coordinate?(selected_coord) == false
-    #   puts "Waiting for a valid coordinate..."
-    #   until
-    #     @computer_board.valid_coordinate?(selected_coord) == true
-    #     puts "Still waiting.."
-    #     selected_coord = gets.chomp
-    #   end
-    #   @computer_board.cells[selected_coord].to_sym.fire_upon
-    #   selected_coord
-    # end
-    # @player_fired = computer_board.cells[@selected_coord].fire_upon
-    # @player_rend = computer_board.cells[@selected_coord].render
-    # computer.computer_board.cells[player_fires(computer)].render
+    puts "Enter a coordinate. Make sure it's valid."
+    @selected_coord = gets.chomp
+    until computer_board.valid_coordinate?(@selected_coord) == true
+      puts "Waiting for a valid coordinate..."
+      @selected_coord = gets.chomp
+    end
+      @selected_coord
+  end
 
+  def player_fires(computer_board)
+    computer_board.cells[@selected_coord.to_sym].fire_upon
+    require "pry"; binding.pry
+    computer_board
+  end
 
   # def player_fires(computer_board)
   #   player_fired
