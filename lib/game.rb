@@ -56,7 +56,7 @@ class Game
 
   def board_display
     puts " ==== DEEP THOUGHT(The great supercomputer) ===="
-    puts @computer_board.render(true)
+    puts @computer_board.render
     puts " ==== YOU ARE ONLY HUMAN ===="
     puts @player_board.render(true)
   end
