@@ -16,6 +16,64 @@ RSpec.describe Game do
     # expect(welcome).to eq("Enter P to play. Enter Q to quit.")
   end
 
+  it "plays the game" do
+    game = Game.new
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
+
+    expect(play_game).to eq()
+  end
+
+  # it "has a turn" do
+  #   game = Game.new
+  #
+  #   expect(turn).to eq()
+  # end
+
+  # it "has an end game message" do
+  #   game = Game.new
+  #
+  #   expect(end_game_message).to eq()
+  # end
+
+  it "places the players cruiser" do
+    game = Game.new
+    cruiser = Ship.new("Cruiser", 3)
+
+    expect(player_cruiser_placement).to eq()
+  end
+
+  it "places the players submarine" do
+    game = Game.new
+    submarine = Ship.new("Submarine", 2)
+
+    expect(player_submarine_placement).to eq()
+  end
+
+  # it "player turn" do
+  #   game = Game.new
+  #
+  #   expect(player_turn).to eq()
+  # end
+
+  it "places computer ship" do
+    game = Game.new
+
+    expect(computer_placement).to eq()
+  end
+
+  it "computer fires" do
+    game = Game.new
+
+    expect(computer_fires).to eq()
+  end
+
+  # it "renders" do
+  #   game = Game.new
+  #
+  #   expect(comp_render_and_report).to eq()
+  # end
+
   it "has a attributes" do
     game = Game.new
 

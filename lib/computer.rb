@@ -6,7 +6,7 @@ require './lib/cell'
 
 class Computer
 
-  attr_reader :ships, :computer_board, :computer_fires, :comp_render_and_report, :cruiser, :submarine, :fired_coord
+  attr_reader :ships, :computer_fires, :comp_render_and_report, :cruiser, :submarine, :fired_coord
   def initialize(player_board, computer_board)
     @ships = [Ship.new("Submarine", 2), Ship.new("Cruiser", 3)]
     @submarine = @ships.first
@@ -33,7 +33,7 @@ class Computer
 
   def computer_fires(player_board)
     # require "pry"; binding.pry
-    # player_board.cells.sample.
+    # player_board.cells.sampe.
     @fired_coord = player_board.cells.keys.sample
     player_board.cells[@fired_coord.to_sym].fire_upon
     @fired_coord
@@ -41,12 +41,11 @@ class Computer
   end
 
   def comp_render_and_report(player_board)
-    # require "pry"; binding.pry
-    if player_board.cells[@fired_coord].render == "X"
+    if player_board.cells[@fired_coord.to_sym].render == "X"
       puts "I shot at #{@fired_coord} GET SUNK."
-    elsif player_board.cells[@fired_cord].render == "H"
+    elsif player_board.cells[@fired_coord.to_sym].render == "H"
       puts "I shot at #{@fired_coord} and it's a hit. I'm gonna win."
-    elsif player_board.cells[@fired_cord].render == "M"
+    elsif player_board.cells[@fired_coord.to_sym].render == "M"
       puts "I missed but I'm not throwing away my SHOT."
     else
       " "
