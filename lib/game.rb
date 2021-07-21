@@ -54,10 +54,10 @@ end
       # require "pry"; binding.pry
       # @computer.select_coordinate(@computer_board)
       @computer.computer_fires(@player_board)
-      @player.player_select_coordinate(@computer_board)
-      @player.player_fires(@computer_board)
-      @computer.comp_render_and_report(@player_board)
-      @player.player_render_and_report(@computer_board)
+      @player.player_select_coordinate
+      # @player.player_fires(@computer_board)
+      # @computer.comp_render_and_report(@player_board)
+      # @player.player_render_and_report(@computer_board)
     # end
   end
 
